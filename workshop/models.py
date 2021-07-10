@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import mark_safe
 
 
 class Image(models.Model):
@@ -11,6 +12,16 @@ class Image(models.Model):
         verbose_name = "Imagem"
         verbose_name_plural = "Imagens"
 
+    def __str__(self):
+        return self.image.url
+
+    def image_tag(self):
+        return mark_safe(
+            f'<img src="{self.image.url}" width="80"/>'
+        )
+
+    image_tag.allow_tags = True
+
 
 class Interest(models.Model):
 
@@ -20,8 +31,12 @@ class Interest(models.Model):
     )
 
     class Meta:
+        ordering = ("description",)
         verbose_name = "Interesse"
         verbose_name_plural = "Interesses"
+
+    def __str__(self):
+        return self.description
 
 
 class Student(models.Model):

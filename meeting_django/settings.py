@@ -25,7 +25,7 @@ SECRET_KEY = '*ql)^_d7@5phj%qbe^n2z72p=$v-4=v^9f$4xj*24hae$alj%y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -119,3 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/home/andre/Documents/Applications/workshop_join_django/meeting_django/media/'
+MEDIA_URL = '/media/'
