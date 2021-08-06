@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+APP_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,6 +25,12 @@ SECRET_KEY = '*ql)^_d7@5phj%qbe^n2z72p=$v-4=v^9f$4xj*24hae$alj%y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+if DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, '/static')
+else:
+    STATIC_ROOT = os.path.join(APP_ROOT, 'static')
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -55,7 +62,7 @@ ROOT_URLCONF = 'meeting_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(APP_ROOT, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,7 +125,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static/'),
+)
+
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = '/home/andre/Documents/Applications/workshop_join_django/meeting_django/media/'
 MEDIA_URL = '/media/'
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = None
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

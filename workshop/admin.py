@@ -1,5 +1,5 @@
 from django.contrib import admin
-from workshop.models import Image, Interest, Student
+from workshop.models import Image, Interest, EventParticipant
 
 # Register your models here.
 
@@ -12,5 +12,5 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Interest)
-admin.site.register(Student)
+admin.site.register(EventParticipant)
 

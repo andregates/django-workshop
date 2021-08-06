@@ -39,7 +39,7 @@ class Interest(models.Model):
         return self.description
 
 
-class Student(models.Model):
+class EventParticipant(models.Model):
 
     KNOWLEDGE_LEVEL = [
         ('0', 'Desconhece'),
@@ -49,8 +49,23 @@ class Student(models.Model):
     ]
 
     name = models.CharField(
-        "Nome do aluno",
+        "Nome do Participante",
         max_length=80
+    )
+    email = models.EmailField(
+        verbose_name="Email",
+        null=True,
+        blank=True
+    )
+    company = models.CharField(
+        "Organização/Projeto",
+        max_length=100,
+        null=True,
+        blank=True
+    )
+    join = models.BooleanField(
+        default=False,
+        verbose_name="Colaborador Join?"
     )
     image = models.ForeignKey(
         Image,
@@ -64,7 +79,7 @@ class Student(models.Model):
     interests = models.ManyToManyField(
         Interest,
         verbose_name="Interesses",
-        related_name="student_interest"
+        related_name="participant_interest"
     )
     created_at = models.DateTimeField(
         "Criado em",
@@ -80,8 +95,9 @@ class Student(models.Model):
     )
 
     class Meta:
-        verbose_name = "Aluno"
-        verbose_name_plural = "Alunos"
+        unique_together = ["email"]
+        verbose_name = "Participante"
+        verbose_name_plural = "Participantes"
 
     def __str__(self):
         return self.name
