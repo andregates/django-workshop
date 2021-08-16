@@ -130,6 +130,7 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'var/www/staticfiles/'
 
 MEDIA_ROOT = '/home/andre/Documents/Applications/workshop_join_django/meeting_django/media/'
 MEDIA_URL = '/media/'

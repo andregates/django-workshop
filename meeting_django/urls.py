@@ -18,9 +18,11 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
-from workshop.views import home_page
+from workshop.views import home_page, get_dashboard_partials
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url('partials', get_dashboard_partials, name='partials'),
     url(r'^$', home_page, name='home_page')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

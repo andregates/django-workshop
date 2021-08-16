@@ -42,10 +42,10 @@ class Interest(models.Model):
 class EventParticipant(models.Model):
 
     KNOWLEDGE_LEVEL = [
-        ('0', 'Desconhece'),
-        ('1', 'Básico'),
-        ('2', 'Intermediário'),
-        ('3', 'Avançado'),
+        ('Nenhum', 'Nenhum'),
+        ('Básico', 'Básico'),
+        ('Intermediário', 'Intermediário'),
+        ('Avançado', 'Avançado'),
     ]
 
     name = models.CharField(
@@ -73,13 +73,19 @@ class EventParticipant(models.Model):
         verbose_name="Imagem"
     )
     knowledge_level = models.CharField(
-        max_length=1,
+        max_length=15,
         choices=KNOWLEDGE_LEVEL
     )
     interests = models.ManyToManyField(
         Interest,
         verbose_name="Interesses",
         related_name="participant_interest"
+    )
+    other_interest = models.CharField(
+        "Outros interesses",
+        max_length=15,
+        null=True,
+        blank=True
     )
     created_at = models.DateTimeField(
         "Criado em",
