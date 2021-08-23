@@ -1,21 +1,27 @@
+"""Create all application models."""
 from django.db import models
 from django.utils.html import mark_safe
 
 
 class Image(models.Model):
+    """Create models to avatar images."""
 
     image = models.ImageField(
         "Carregar imagem"
     )
 
     class Meta:
+        """Set attributes of pluralization."""
+
         verbose_name = "Imagem"
         verbose_name_plural = "Imagens"
 
     def __str__(self):
+        """Modify the object return."""
         return self.image.url
 
     def image_tag(self):
+        """Compose html image."""
         return mark_safe(
             f'<img src="{self.image.url}" width="80"/>'
         )
@@ -24,6 +30,7 @@ class Image(models.Model):
 
 
 class Interest(models.Model):
+    """Create models to interests in Django."""
 
     description = models.CharField(
         "Interesse",
@@ -31,15 +38,19 @@ class Interest(models.Model):
     )
 
     class Meta:
+        """Set attributes of pluralization."""
+
         ordering = ("description",)
         verbose_name = "Interesse"
         verbose_name_plural = "Interesses"
 
     def __str__(self):
+        """Modify the object return."""
         return self.description
 
 
 class EventParticipant(models.Model):
+    """Create models to all participants of the survey."""
 
     KNOWLEDGE_LEVEL = [
         ('Nenhum', 'Nenhum'),
@@ -101,9 +112,12 @@ class EventParticipant(models.Model):
     )
 
     class Meta:
+        """Set attributes of pluralization."""
+
         unique_together = ["email"]
         verbose_name = "Participante"
         verbose_name_plural = "Participantes"
 
     def __str__(self):
+        """Modify the object return."""
         return self.name

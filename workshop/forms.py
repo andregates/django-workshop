@@ -1,11 +1,14 @@
+"""Handle the participant form."""
 from django.forms import ModelForm
 from django import forms
 from workshop.models import EventParticipant
 
 
 class EventParticipantForm(ModelForm):
+    """Create a event participant form to register."""
 
     class Meta:
+        """Set attributtes as well as widgets  of the form."""
 
         model = EventParticipant
         fields = (
@@ -49,4 +52,3 @@ class EventParticipantForm(ModelForm):
             'other_interest': forms.TextInput(
                 attrs={'class': 'form-control'})
         }
-

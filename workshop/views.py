@@ -1,14 +1,15 @@
-from django.shortcuts import render, redirect
+"""Handle all views from system, Dashboard and participant registration."""
+from django.shortcuts import render
 from workshop.models import EventParticipant, Image, Interest
 from workshop.forms import EventParticipantForm
 from django.http import JsonResponse
-from django.db.models import F, Count, Avg, Window
+from django.db.models import F, Count, Window
 from django.db.models import FloatField, ExpressionWrapper
 
 
 def home_page(request):
-    """Render the Dashboard od application"""
-    return render(request, f'dashboard.html')
+    """Render the Dashboard od application."""
+    return render(request, 'dashboard.html')
 
 
 def get_dashboard_partials(request):
@@ -69,7 +70,8 @@ def get_dashboard_partials(request):
         "labels": interest_labels
     }
 
-    others_interest = list(participants.filter(other_interest__isnull=False).values_list(
+    others_interest = list(participants.filter(
+        other_interest__isnull=False).values_list(
         'other_interest', flat=True))
 
     partials = {
@@ -134,4 +136,4 @@ def create_participant(request):
     }
 
     return render(
-        request, f'event_participant.html', context)
+        request, 'event_participant.html', context)
