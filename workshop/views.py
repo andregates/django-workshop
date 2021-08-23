@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from workshop.models import EventParticipant, Image, Interest
-from django.core import serializers
+from workshop.forms import EventParticipantForm
 from django.http import JsonResponse
-from django.db.models import F, Count, Avg, Window, ExpressionWrapper, FloatField
+from django.db.models import F, Count, Avg, Window
+from django.db.models import FloatField, ExpressionWrapper
 
 
 def home_page(request):
@@ -18,7 +19,7 @@ def get_dashboard_partials(request):
     participants_external = participants_all - participants_join
     participants_list = list(participants.annotate(
         img=F('image__image')).values(
-        "img", "name", "company").order_by("name"))
+        "img", "name", "company").order_by("company", "name"))
 
     knowledge_labels = []
     knowledge_series = []
@@ -84,3 +85,53 @@ def get_dashboard_partials(request):
     return JsonResponse(partials, safe=False)
 
 
+def create_participant(request):
+    """Create a event participant object."""
+    event_participant_form = EventParticipantForm(request.POST or None)
+    images = Image.objects.all()
+    message_type = None
+    message_title = None
+    message_text = None
+
+    if request.method == "POST":
+        if event_participant_form.is_valid():
+
+            data = request.POST
+            image = Image.objects.get(id=data.get('image'))
+            interests = Interest.objects.filter(
+                id__in=data.getlist('interests'))
+            query = {
+                "name": event_participant_form.cleaned_data['name'],
+                "email": event_participant_form.cleaned_data['email'],
+                "company": event_participant_form.cleaned_data['company'],
+                "join": event_participant_form.cleaned_data['join'],
+                "knowledge_level": event_participant_form.cleaned_data[
+                    'knowledge_level'],
+                "image": image,
+                "other_interest": data.get('other_interest', None)
+            }
+            participant = EventParticipant.objects.create(**query)
+            participant.interests.set(interests)
+            participant.save()
+            message_type = "success"
+            message_title = "INFORMAÇÃO SALVA COM SUCESSO!"
+            message_text = "Obrigado pela sua participação! Sua " \
+                           "opinião é muito importante para nós."
+        else:
+            message_type = "danger"
+            message_title = "INFORMAÇÃO PARA ESTE EMAIL JÁ REGISTRADA!"
+            message_text = "Obrigado pela sua participação! Sua opinião " \
+                           "é muito importante para nós."
+
+        event_participant_form = EventParticipantForm(None)
+
+    context = {
+        'event_participant_form': event_participant_form,
+        'images': images,
+        "message_type": message_type,
+        "message_title": message_title,
+        "message_text": message_text
+    }
+
+    return render(
+        request, f'event_participant.html', context)

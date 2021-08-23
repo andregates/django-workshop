@@ -9,7 +9,8 @@ Coded by Creative Tim
 
 =========================================================
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-{% load static %}<!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,12 +50,6 @@ The above copyright notice and this permission notice shall be included in all c
                     <a class="nav-link" href="./dashboard.html">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./user.html">
-                        <i class="material-icons">groups</i>
-                        <p>Pesquisa rápida</p>
                     </a>
                 </li>
             </ul>
@@ -244,6 +239,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 <script>
 
+    var chart_compare;
+    var chart1_compare;
+
     var options = {
         series: [],
         chart: {
@@ -275,10 +273,16 @@ The above copyright notice and this permission notice shall be included in all c
             url: url,
             success: function (data) {
                 if (data){
-                    if (parseInt($("#part").text()) != data.all_part){
+                    if (parseInt($("#part").text()) != data.all_part
+                        || data.knowledge_chart != chart1_compare
+                        || data.interest_chart != chart1_compare){
                         $("#part").text(data.all_part);
                         $("#join").text(data.part_join);
                         $("#ext").text(data.part_ext);
+
+                        if (parseInt(data.all_part) === 0){
+                            $("#other_interest").text("");
+                        }
 
                         $('#participants tbody').html("");
                         for (var i = 0; i < data.list.length; i++) {
@@ -288,6 +292,8 @@ The above copyright notice and this permission notice shall be included in all c
                                 row.company + '</td></tr>');
 
                         }
+                        chart_compare = data.knowledge_chart;
+                        chart1_compare = data.interest_chart
                         update_chart(chart, data.knowledge_chart, 470);
                         update_chart(chart1, data.interest_chart, 600);
                         if (data.other_interest.length > 0){
