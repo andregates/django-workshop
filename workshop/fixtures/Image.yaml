@@ -1,44 +1,84 @@
-- model: workshop.interest
+- model: workshop.image
   pk: 1
   fields:
-    description: Django ORM (Object-relational mapping)
-- model: workshop.interest
+    image: img1.png
+- model: workshop.image
   pk: 2
   fields:
-    description: Migrações
-- model: workshop.interest
+    image: img2.png
+- model: workshop.image
   pk: 3
   fields:
-    description: APIs com Django
-- model: workshop.interest
+    image: img3.png
+- model: workshop.image
   pk: 4
   fields:
-    description: Django Admin
-- model: workshop.interest
+    image: img4.png
+- model: workshop.image
   pk: 5
   fields:
-    description: Curva de aprendizado
-- model: workshop.interest
+    image: img5.png
+- model: workshop.image
   pk: 6
   fields:
-    description: Nenhum
-- model: workshop.interest
+    image: img6.png
+- model: workshop.image
   pk: 7
   fields:
-    description: Django Templates
-- model: workshop.interest
+    image: img7.png
+- model: workshop.image
   pk: 8
   fields:
-    description: DRF Django Rest Framework
-- model: workshop.interest
+    image: img8.png
+- model: workshop.image
   pk: 9
   fields:
-    description: Deploy
-- model: workshop.interest
+    image: img9.png
+- model: workshop.image
   pk: 10
   fields:
-    description: Comunidade Django
-- model: workshop.interest
+    image: img10.png
+- model: workshop.image
   pk: 11
   fields:
-    description: Documentação do Django
+    image: img11.png
+- model: workshop.image
+  pk: 12
+  fields:
+    image: img12.png
+- model: workshop.image
+  pk: 13
+  fields:
+    image: img13.png
+- model: workshop.image
+  pk: 14
+  fields:
+    image: img14.png
+- model: workshop.image
+  pk: 15
+  fields:
+    image: img15.png
+- model: workshop.image
+  pk: 16
+  fields:
+    image: img16.png
+- model: workshop.image
+  pk: 17
+  fields:
+    image: img17.png
+- model: workshop.image
+  pk: 18
+  fields:
+    image: img18.png
+- model: workshop.image
+  pk: 19
+  fields:
+    image: img19.png
+- model: workshop.image
+  pk: 20
+  fields:
+    image: img20.png
+- model: workshop.image
+  pk: 21
+  fields:
+    image: img21.png
