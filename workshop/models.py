@@ -40,7 +40,6 @@ class Interest(models.Model):
     class Meta:
         """Set attributes of pluralization."""
 
-        ordering = ("description",)
         verbose_name = "Interesse"
         verbose_name_plural = "Interesses"
 

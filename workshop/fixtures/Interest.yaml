@@ -1,31 +1,31 @@
 - model: workshop.interest
   pk: 1
   fields:
-    description: Django ORM (Object-relational mapping)
+    description: Nenhum
 - model: workshop.interest
   pk: 2
   fields:
-    description: Migrações
+    description: Documentação do Django
 - model: workshop.interest
   pk: 3
   fields:
-    description: APIs com Django
+    description: Salários de profissionais Django
 - model: workshop.interest
   pk: 4
   fields:
-    description: Django Admin
+    description: Curva de aprendizado
 - model: workshop.interest
   pk: 5
   fields:
-    description: Curva de aprendizado
+    description: Deploy de aplicações
 - model: workshop.interest
   pk: 6
   fields:
-    description: Nenhum
+    description: Django ORM (Object-relational mapping)
 - model: workshop.interest
   pk: 7
   fields:
-    description: Django Templates
+    description: Comunidade Django
 - model: workshop.interest
   pk: 8
   fields:
@@ -33,12 +33,21 @@
 - model: workshop.interest
   pk: 9
   fields:
-    description: Deploy
+    description: Testes utilizando Django
 - model: workshop.interest
   pk: 10
   fields:
-    description: Comunidade Django
+    description: Django Admin
 - model: workshop.interest
   pk: 11
   fields:
-    description: Documentação do Django
+    description: API's com Django
+- model: workshop.interest
+  pk: 12
+  fields:
+    description: Migração de dados em Django
+- model: workshop.interest
+  pk: 13
+  fields:
+    description: Perspectivas de futuro
+
