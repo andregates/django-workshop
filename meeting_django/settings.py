@@ -32,7 +32,7 @@ else:
     STATIC_ROOT = os.path.join(APP_ROOT, 'static')
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["ec2-18-228-238-177.sa-east-1.compute.amazonaws.com"]
 
 
 # Application definition
@@ -130,9 +130,9 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'var/www/staticfiles/'
+STATIC_ROOT = '/home/ubuntu/django/meeting_django/var/www/staticfiles/'
 
-MEDIA_ROOT = '/home/andre/Documents/Applications/workshop_join_django/meeting_django/media/'
+MEDIA_ROOT = '/home/ubuntu/django/meeting_django/media/'
 MEDIA_URL = '/media/'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
