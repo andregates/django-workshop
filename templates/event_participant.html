@@ -27,6 +27,13 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- CSS Files -->
     <link href="{% static '/assets/css/material-dashboard.css' %}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+
+        .select2 {
+            width:100%!important;
+        }
+
+    </style>
 </head>
 <body>
 <div class="wrapper ">
@@ -43,7 +50,7 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="top-page">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info">
@@ -75,8 +82,10 @@ The above copyright notice and this permission notice shall be included in all c
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                <div class="col-md-6" style="float: left;">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Nome e Sobrenome *</label>
                                             {{ event_participant_form.name }}
@@ -84,7 +93,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Email *</label>
                                             {{ event_participant_form.email }}
@@ -92,7 +101,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Você é colaborador JOIN? *</label>
                                             {{ event_participant_form.join }}
@@ -100,15 +109,17 @@ The above copyright notice and this permission notice shall be included in all c
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Organização onde trabalha *</label>
                                             {{ event_participant_form.company }}
                                         </div>
                                     </div>
                                 </div>
+                                </div>
+                                <div class="col-md-6" style="float: right;">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Nível de conhecimento em Django *</label>
                                             {{ event_participant_form.knowledge_level }}
@@ -116,7 +127,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Interesses em Django *</label>
                                             <select class="form-control multiselect" id="interests" name="interests" multiple="multiple">
@@ -126,19 +137,13 @@ The above copyright notice and this permission notice shall be included in all c
                                             </select>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Outros interesses:</label>
                                             {{ event_participant_form.other_interest }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" hidden>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type=text name="image" id="image" value="1"></input>
                                         </div>
                                     </div>
                                 </div>
@@ -146,6 +151,15 @@ The above copyright notice and this permission notice shall be included in all c
                                 <div class="row">
                                     <div class="col-md-6">
                                         <button type="submit" class="btn btn-warning pull-right">Enviar</button>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                                <div class="row" hidden>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type=text name="image" id="image" value="1"></input>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -197,8 +211,12 @@ The above copyright notice and this permission notice shall be included in all c
                 $(this).val($(this).val().toLowerCase());
             }
         });
+        $(function() {
+            $('#knowledgeLevel, #interests').select2({
+                dropdownParent: $('#top-page')
+            });
 
-        $('#knowledgeLevel, #interests').select2();
+        });
 
 
         $(".images").each(function(index, e) {
